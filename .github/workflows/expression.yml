@@ -1,28 +1,37 @@
-name: Reusable deploy workflow
+name: zeyan test expression
 on:
   workflow_dispatch:
+    inputs:
+      input1:
+        description: 'this is input1'
+        required: true
+        type: string
+      input2:
+        description: 'this is input2'
+        required: true
+        type: string
 jobs:
   input1Job:
     runs-on: ubuntu-latest
-    if: ${{ vars.INPUT1 }}
+    if: ${{ inputs.input1 == '123' }}
     steps:
     - name: input1Step
-      if: ${{ vars.INPUT1 }}
+      if: ${{ inputs.input1 == '123' }}
       run: |
-        echo "not skip for var INPUT1 is $INPUT1"
+        echo "not skip for input1 is $inputs.input1"
     - name: input2Step
-      if: ${{ vars.INPUT2 }}
+      if: ${{ inputs.input2 == 123 }}
       run: |
-        echo "not skip for var INPUT1 is $INPUT1"
+        echo "inputs.input2 is $inputs.input2"
   input2Job:
     runs-on: ubuntu-latest
-    if: ${{ vars.INPUT2 }}
+    if: ${{ inputs.input2 == '123' }}
     steps:
     - name: input1Step
-      if: ${{ vars.INPUT1 }}
+      if: ${{ inputs.input1 == '123' }}
       run: |
-        echo "not skip for var INPUT1 is $INPUT1"
+        echo "not skip for input1 is $inputs.input1"
     - name: input2Step
-      if: ${{ vars.INPUT2 }}
+      if: ${{ inputs.input2 == 123 }}
       run: |
-        echo "not skip for var INPUT1 is $INPUT1"
+        echo "inputs.input2 is $inputs.input2"
