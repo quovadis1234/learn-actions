@@ -1,0 +1,28 @@
+name: Reusable deploy workflow
+on:
+  workflow_dispatch:
+jobs:
+  input1Job:
+    runs-on: ubuntu-latest
+    if: ${{ vars.INPUT1 }}
+    steps:
+    - name: input1Step
+      if: ${{ vars.INPUT1 }}
+      run: |
+        echo "not skip for var INPUT1 is $INPUT1"
+    - name: input2Step
+      if: ${{ vars.INPUT2 }}
+      run: |
+        echo "not skip for var INPUT1 is $INPUT1"
+  input2Job:
+    runs-on: ubuntu-latest
+    if: ${{ vars.INPUT2 }}
+    steps:
+    - name: input1Step
+      if: ${{ vars.INPUT1 }}
+      run: |
+        echo "not skip for var INPUT1 is $INPUT1"
+    - name: input2Step
+      if: ${{ vars.INPUT2 }}
+      run: |
+        echo "not skip for var INPUT1 is $INPUT1"
