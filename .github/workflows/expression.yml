@@ -6,6 +6,10 @@ on:
         description: 'this is input1'
         required: true
         type: choice
+        options:
+          - apple
+          - banana
+          - grape
       input2:
         description: 'this is input2'
         required: true
@@ -13,10 +17,8 @@ on:
 jobs:
   input1Job:
     runs-on: ubuntu-latest
-    if: ${{ inputs.input1.length() > 0 }}
     steps:
     - name: input1Step
-      if: ${{ inputs.input1 == '123' }}
       run: |
         echo "not skip for input1 is $inputs.input1"
     - name: input2Step
@@ -28,7 +30,6 @@ jobs:
     if: ${{ inputs.input2 == '123' }}
     steps:
     - name: input1Step
-      if: ${{ inputs.input1 == '123' }}
       run: |
         echo "not skip for input1 is $inputs.input1"
     - name: input2Step
